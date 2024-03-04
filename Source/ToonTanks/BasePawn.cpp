@@ -2,6 +2,7 @@
 
 
 #include "BasePawn.h"
+#include "Components/CapsuleComponent.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -9,6 +10,15 @@ ABasePawn::ABasePawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	CollisionComponent = CreateDefaultSubobject<UCapsuleComponent>(TEXT("CapsuleComponent"));
+	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BaseMesh"));
+	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TurretMesh"));
+	BulletSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("BulletSpwanPoint"));
+
+	RootComponent = CollisionComponent;
+	BaseMesh->SetupAttachment(RootComponent);
+	TurretMesh->SetupAttachment(BaseMesh);
+	BulletSpawnPoint->SetupAttachment(TurretMesh); 
 }
 
 // Called when the game starts or when spawned
