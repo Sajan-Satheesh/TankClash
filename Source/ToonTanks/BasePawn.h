@@ -24,10 +24,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pointers", meta = (AllowPrivateAccess = "true"))
 	class UCapsuleComponent* CollisionComponent;
 
@@ -35,9 +34,14 @@ private:
 	UStaticMeshComponent* BaseMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pointers", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* TurretMesh;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pointers", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* BulletSpawnPoint;
 
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pointers", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* TurretMesh;
+
+
+protected:
+
+	void rotateTurret(FVector, float);
 };
